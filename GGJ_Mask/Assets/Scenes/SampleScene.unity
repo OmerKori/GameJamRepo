@@ -737,7 +737,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   speed: 5
-  jumpForce: 7
+  jumpForce: 70
   ladderClimbSpeed: 3
   isGrounded: 1
 --- !u!1 &655348569
