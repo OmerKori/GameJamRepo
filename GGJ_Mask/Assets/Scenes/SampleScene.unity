@@ -130,9 +130,9 @@ GameObject:
   - component: {fileID: 147469062}
   - component: {fileID: 147469061}
   - component: {fileID: 147469063}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -205,7 +205,7 @@ Transform:
   m_GameObject: {fileID: 147469060}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.75, y: -2.25, z: 0}
+  m_LocalPosition: {x: -0.21, y: -3.07, z: 0}
   m_LocalScale: {x: 19.52, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -645,7 +645,7 @@ Transform:
   m_GameObject: {fileID: 640624889}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.24, y: -0.38, z: 0}
+  m_LocalPosition: {x: -6.99, y: -0.9, z: 0}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -739,7 +739,6 @@ MonoBehaviour:
   speed: 5
   jumpForce: 7
   ladderClimbSpeed: 3
-  rb: {fileID: 0}
   isGrounded: 1
 --- !u!1 &655348569
 GameObject:
