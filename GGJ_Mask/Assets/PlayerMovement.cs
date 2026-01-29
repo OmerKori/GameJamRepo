@@ -18,14 +18,10 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
-       
+        rb.AddForce(new Vector2(moveHorizontal * speed, 0));
+
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
-        {
-            rb.AddForce(new Vector2(moveHorizontal * speed, jumpForce));
-            isGrounded = false;
-        }
-        else
-            rb.AddForce(new Vector2(moveHorizontal * speed, 0));
+            rb.AddForce(new Vector2(0, jumpForce));
 
         if (moveHorizontal > 0)
             spriteRenderer.flipX = false;
