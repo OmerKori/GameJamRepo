@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
     
-    public bool isGrounded = true;
+    public bool isGrounded;
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -37,6 +37,13 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             isGrounded = true;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            isGrounded = false;
         }
     }
 }
