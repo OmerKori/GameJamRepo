@@ -275,8 +275,8 @@ MonoBehaviour:
   Speed: 3
   acceleration: 40
   decceleration: 30
-  jumpForce: 30
-  ladderSpeed: 1
+  jumpForce: 15
+  ladderSpeed: 10
 --- !u!95 &393855417825976979
 Animator:
   serializedVersion: 7
