@@ -6,7 +6,7 @@ public class MasksManager : MonoBehaviour
     [SerializeField] GameObject masksUIParent;
     [SerializeField] RectTransform maskUIHighlight;
     GameObject currentMask,IndicatedMask = null;
-
+    int indicatedMaskIndex = -1, currentMaskIndex = 0;
     private void Start()
     {
         currentMask = masks[0];
@@ -52,6 +52,7 @@ public class MasksManager : MonoBehaviour
         IndicatedMask.SetActive(true);
         IndicatedMask.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.8f);
         currentMask.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
+        indicatedMaskIndex = i;
 
         //move highlight in UI
         maskUIHighlight.SetParent(masksUIParent.transform.GetChild(i), false);
@@ -67,6 +68,8 @@ public class MasksManager : MonoBehaviour
         IndicatedMask.GetComponent<PolygonCollider2D>().enabled = true;
 
         IndicatedMask = null;
+        currentMaskIndex = indicatedMaskIndex;
+        indicatedMaskIndex = -1;
     }
 
     private void RemoveIndicatedMask()
@@ -74,6 +77,8 @@ public class MasksManager : MonoBehaviour
         IndicatedMask.SetActive(false);
         IndicatedMask = null;
         currentMask.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
+        maskUIHighlight.SetParent(masksUIParent.transform.GetChild(currentMaskIndex), false);
+        maskUIHighlight.anchoredPosition = Vector3.zero;
     }
     
 }
