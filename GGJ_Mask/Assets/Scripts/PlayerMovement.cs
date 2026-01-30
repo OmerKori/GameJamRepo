@@ -42,7 +42,6 @@ public class PlayerMovement : MonoBehaviour
                 rb.linearVelocityY = ladderSpeed;
             else 
                 rb.linearVelocityY = 0;
-            print(1);
         }
         else if(isGrounded && SpacePressed)
         {

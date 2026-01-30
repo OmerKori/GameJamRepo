@@ -1,10 +1,12 @@
 using UnityEngine;
-
+using UnityEngine.UI;
 public class MasksManager : MonoBehaviour
 {
     [SerializeField] GameObject[] masks;
     [SerializeField] GameObject masksUIParent;
     [SerializeField] RectTransform maskUIHighlight;
+    [SerializeField] Image OverlapImg1,OverlapImg2;
+
     GameObject currentMask,IndicatedMask = null;
     int indicatedMaskIndex = -1, currentMaskIndex = 0;
     private void Start()
@@ -26,7 +28,7 @@ public class MasksManager : MonoBehaviour
             SwapMasks();
     }
 
-    void IndicateMask(int i)
+    public void IndicateMask(int i)
     {
         if (masks[i] == currentMask) 
             return;
@@ -50,8 +52,13 @@ public class MasksManager : MonoBehaviour
         IndicatedMask = masks[i];
         IndicatedMask.GetComponent<PolygonCollider2D>().enabled = false;
         IndicatedMask.SetActive(true);
-        IndicatedMask.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.8f);
-        currentMask.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
+        IndicatedMask.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.03f);
+        IndicatedMask.transform.Find("Outline").GetComponent<SpriteRenderer>().enabled = false;
+        currentMask.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.5f);
+
+      //  OverlapImg1.sprite = currentMask.GetComponent<SpriteRenderer>().sprite;
+      //  OverlapImg2.sprite = IndicatedMask.GetComponent<SpriteRenderer>().sprite;
+      //  OverlapImg1.gameObject.SetActive(true);
         indicatedMaskIndex = i;
 
         //move highlight in UI
@@ -59,13 +66,14 @@ public class MasksManager : MonoBehaviour
         maskUIHighlight.anchoredPosition = Vector3.zero;
     }
 
-    void SwapMasks()
+    public void SwapMasks()
     {
         currentMask.SetActive(false);
         currentMask = IndicatedMask;
-        currentMask.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
+        currentMask.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0,1);
         currentMask.SetActive(true);
-        IndicatedMask.GetComponent<PolygonCollider2D>().enabled = true;
+        currentMask.GetComponent<PolygonCollider2D>().enabled = true;
+        currentMask.transform.Find("Outline").GetComponent<SpriteRenderer>().enabled = true;
 
         IndicatedMask = null;
         currentMaskIndex = indicatedMaskIndex;
@@ -76,9 +84,11 @@ public class MasksManager : MonoBehaviour
     {
         IndicatedMask.SetActive(false);
         IndicatedMask = null;
-        currentMask.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
+        currentMask.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
+
         maskUIHighlight.SetParent(masksUIParent.transform.GetChild(currentMaskIndex), false);
         maskUIHighlight.anchoredPosition = Vector3.zero;
+     //   OverlapImg1.gameObject.SetActive(false);
     }
     
 }
