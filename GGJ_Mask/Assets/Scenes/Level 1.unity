@@ -1263,13 +1263,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1952387272874705424, guid: e57191de3575a9541b1e1e59be8d0bcd, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3596433455827114525, guid: e57191de3575a9541b1e1e59be8d0bcd, type: 3}
       propertyPath: m_Name
       value: Ladder
       objectReference: {fileID: 0}
+    - target: {fileID: 3596433455827114525, guid: e57191de3575a9541b1e1e59be8d0bcd, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5276718352175665228, guid: e57191de3575a9541b1e1e59be8d0bcd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -5.89
       objectReference: {fileID: 0}
     - target: {fileID: 5276718352175665228, guid: e57191de3575a9541b1e1e59be8d0bcd, type: 3}
       propertyPath: m_LocalPosition.y
