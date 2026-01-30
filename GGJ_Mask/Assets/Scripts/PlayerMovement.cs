@@ -3,18 +3,21 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] private float maxSpeed = 8f;
-    [SerializeField] private float acceleration = 40f;
-    [SerializeField] private float deceleration = 60f;
+    [SerializeField] private float Speed = 8f;
+    [SerializeField] private float acceleration = 30f;
+    [SerializeField] private float decceleration = 30f;
 
     [Header("Jump")]
     [SerializeField] private float jumpForce = 12f;
 
+    [SerializeField] private float ladderSpeed = 1;
+
     private Rigidbody2D rb;
     private bool isGrounded;
+    private bool isLaddered;
 
     private float inputX;
-
+    private bool SpacePressed;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -24,45 +27,41 @@ public class PlayerMovement : MonoBehaviour
     {
         // Read input in Update (best practice)
         inputX = Input.GetAxisRaw("Horizontal");
-
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            Jump();
-        }
+        SpacePressed = Input.GetKey(KeyCode.Space);
     }
 
     private void FixedUpdate()
     {
-        Move(inputX);
-    }
-
-    private void Move(float x)
-    {
-        float targetVelX = x * maxSpeed;
-
-        // If player is pressing a direction, accelerate; otherwise decelerate to 0.
-        float smooth = Mathf.Abs(x) > 0.01f ? acceleration : deceleration;
-
-        float newVelX = Mathf.MoveTowards(rb.linearVelocity.x, targetVelX, smooth * Time.fixedDeltaTime);
-        rb.linearVelocity = new Vector2(newVelX, rb.linearVelocity.y);
-    }
-
-    private void Jump()
-    {
-        // Optional: remove downward velocity so jump is consistent
-        rb.linearVelocity = new Vector2(rb.linearVelocityX, 0f);
-        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(inputX, 0) * Speed * acceleration);
+        if (SpacePressed)
+        {
+            print(isGrounded);
+            if (isLaddered)
+                rb.AddForce(new Vector2(0, 1) * ladderSpeed);
+            else if (isGrounded)
+                rb.AddForce(new Vector2(0, jumpForce));
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Ground"))
-            isGrounded = true;
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            if (transform.position.y>collision.transform.position.y)
+                isGrounded = true;
+        }
+            
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Ladder"))
+            isLaddered = true;
+        
+           
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Ground"))
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
             isGrounded = false;
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Ladder"))
+            isLaddered = false;
     }
 }
