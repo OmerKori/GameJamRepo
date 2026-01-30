@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isLaddered;
 
     private float inputX;
-    private bool SpacePressed;
+    private bool WPressed;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -26,24 +26,28 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         inputX = Input.GetAxisRaw("Horizontal");
-        SpacePressed = Input.GetKey(KeyCode.Space);
+        WPressed = Input.GetKey(KeyCode.W);
     }
 
     private void FixedUpdate()
     {
-        if(isGrounded)
+        if (inputX != 0)
+            transform.rotation = Quaternion.Euler(0, inputX * 180f, 0);
+        
+
+        if (isGrounded)
             rb.AddForce(acceleration * Speed * new Vector2(inputX, 0));
         else
-            rb.AddForce(acceleration * Speed * 2/3 * new Vector2(inputX, 0));
-     
+            rb.AddForce(acceleration * Speed * 2 / 3 * new Vector2(inputX, 0));
+
         if (isLaddered)
         {
-            if (SpacePressed)
+            if (WPressed)
                 rb.linearVelocityY = ladderSpeed;
-            else 
+            else
                 rb.linearVelocityY = 0;
         }
-        else if(isGrounded && SpacePressed)
+        else if (isGrounded && WPressed)
         {
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         }
