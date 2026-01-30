@@ -32,14 +32,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.AddForce(new Vector2(inputX, 0) * Speed * acceleration);
-        if (SpacePressed)
+        if(isGrounded)
+            rb.AddForce(acceleration * Speed * new Vector2(inputX, 0));
+        else
+            rb.AddForce(acceleration * Speed * 2/3 * new Vector2(inputX, 0));
+     
+        if (isLaddered)
         {
-            print(isGrounded);
-            if (isLaddered)
-                rb.AddForce(new Vector2(0, 1) * ladderSpeed);
-            else if (isGrounded)
-                rb.AddForce(new Vector2(0, jumpForce));
+            if (SpacePressed)
+                rb.linearVelocityY = ladderSpeed;
+            else 
+                rb.linearVelocityY = 0;
+        }
+        else if(isGrounded && SpacePressed)
+        {
+            rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         }
     }
 
