@@ -199,9 +199,9 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 10
+  m_LinearDamping: 5
   m_AngularDamping: 0.05
-  m_GravityScale: 8
+  m_GravityScale: 10
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -274,5 +274,5 @@ MonoBehaviour:
   Speed: 3
   acceleration: 40
   decceleration: 30
-  jumpForce: 1200
+  jumpForce: 30
   ladderSpeed: 1
