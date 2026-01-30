@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 2ac8f6c35615c8249a9378c1999937ae
+guid: dadfe2e7b7389d842abb51a8edb878eb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5711848221618334454
-    second: Knight_0
+      213: -8285773504889700863
+    second: Helmets_0
   - first:
-      213: -8985680732576350864
-    second: Knight_1
+      213: -867696522777932473
+    second: Helmets_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,45 +103,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Knight_0
+      name: Helmets_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a051e7b1e407bb0b0800000000000000
-      internalID: -5711848221618334454
+      spriteID: 5908d48c125f4e04481d4863607153c0
+      internalID: -8285773504889700863
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight_1
+      name: Helmets_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 07df6bd5bf27c4380800000000000000
-      internalID: -8985680732576350864
+      spriteID: a224e52c90323354395bdf0a51e44ef6
+      internalID: -867696522777932473
       vertices: []
       indices: 
       edges: []
@@ -150,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 8350ecb926c2ca741a34e819972bfd5f
+    spriteID: f4674df972975764bb2892fc9d2fe936
     internalID: 0
     vertices: []
     indices: 
@@ -160,10 +160,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Knight_0: -5711848221618334454
-      Knight_1: -8985680732576350864
+      Helmets_0: -8285773504889700863
+      Helmets_1: -867696522777932473
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
