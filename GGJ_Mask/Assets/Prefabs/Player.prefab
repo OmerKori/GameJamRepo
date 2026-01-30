@@ -275,4 +275,4 @@ MonoBehaviour:
   acceleration: 40
   decceleration: 30
   jumpForce: 30
-  ladderSpeed: 1
+  ladderSpeed: 10

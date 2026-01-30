@@ -25,7 +25,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        // Read input in Update (best practice)
         inputX = Input.GetAxisRaw("Horizontal");
         SpacePressed = Input.GetKey(KeyCode.Space);
     }
@@ -43,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.linearVelocityY = ladderSpeed;
             else 
                 rb.linearVelocityY = 0;
+            print(1);
         }
         else if(isGrounded && SpacePressed)
         {
@@ -57,18 +57,21 @@ public class PlayerMovement : MonoBehaviour
             if (transform.position.y>collision.transform.position.y)
                 isGrounded = true;
         }
-            
-        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Ladder"))
-            isLaddered = true;
-        
-           
     }
-
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
             isGrounded = false;
-        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Ladder"))
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ladder"))
+            isLaddered = true;
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ladder"))
             isLaddered = false;
     }
 }
