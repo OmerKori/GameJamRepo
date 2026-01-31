@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float ladderSpeed = 1;
 
+    private Animator playerAnimator;
     private Rigidbody2D rb;
     private bool isGrounded;
     private bool isLaddered;
@@ -21,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerAnimator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -34,11 +36,20 @@ public class PlayerMovement : MonoBehaviour
         if (inputX != 0)
             transform.rotation = Quaternion.Euler(0, inputX * 180f, 0);
         
+        //Fix Flipping 
 
         if (isGrounded)
+        {
             rb.AddForce(acceleration * Speed * new Vector2(inputX, 0));
+            playerAnimator.SetTrigger("Walk");
+        }
         else
+        {
             rb.AddForce(acceleration * Speed * 2 / 3 * new Vector2(inputX, 0));
+            playerAnimator.SetTrigger("Walk");
+        }
+
+        //When Not Moving: playerAnimator.SetTrigger("Idle");
 
         if (isLaddered)
         {
