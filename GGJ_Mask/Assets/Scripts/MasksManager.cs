@@ -21,20 +21,7 @@ public class MasksManager : MonoBehaviour
 
     private void Start()
     {
-        // Get the helmet sprite renderer
-        if (playerHelmetObject != null)
-        {
-            helmetSpriteRenderer = playerHelmetObject.GetComponent<SpriteRenderer>();
-            if (helmetSpriteRenderer == null)
-            {
-                Debug.LogError("Player helmet object doesn't have a SpriteRenderer component!");
-            }
-        }
-        else
-        {
-            Debug.LogError("Player helmet transform not assigned!");
-        }
-
+        helmetSpriteRenderer = playerHelmetObject.GetComponent<SpriteRenderer>();
         currentMask = masks[startingMask];
         if (startingMask != 0)
         {
@@ -49,7 +36,7 @@ public class MasksManager : MonoBehaviour
 
         levelManager = FindObjectOfType<LevelManager>();
         if (player != null)
-            playerCollider = player.GetComponent<Collider2D>();
+            playerCollider = player.GetComponent<Collider2D>();        
     }
 
     private void Update()
@@ -120,7 +107,6 @@ public class MasksManager : MonoBehaviour
         currentMask.GetComponent<PolygonCollider2D>().enabled = true;
         currentMask.transform.Find("Outline").GetComponent<SpriteRenderer>().enabled = true;
 
-        // Update the player's helmet sprite
         UpdateHelmetSprite(indicatedMaskIndex);
 
         IndicatedMask = null;
@@ -130,22 +116,11 @@ public class MasksManager : MonoBehaviour
 
     private void UpdateHelmetSprite(int maskIndex)
     {
-        if (helmetSpriteRenderer == null)
-            return;
-
-        if (helmetSprites == null || helmetSprites.Length == 0)
-        {
-            Debug.LogWarning("Helmet sprites array is not assigned or empty!");
-            return;
-        }
+        if (helmetSpriteRenderer == null) return;
 
         if (maskIndex >= 0 && maskIndex < helmetSprites.Length)
         {
             helmetSpriteRenderer.sprite = helmetSprites[maskIndex];
-        }
-        else
-        {
-            Debug.LogError($"Helmet sprite index {maskIndex} out of range!");
         }
     }
 
