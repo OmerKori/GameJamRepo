@@ -22,6 +22,12 @@ public class MasksManager : MonoBehaviour
     Collider2D playerCollider;
     SpriteRenderer helmetSpriteRenderer;
 
+    private void Awake()
+    {
+        if (player != null)
+            playerCollider = player.GetComponent<Collider2D>();
+        player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+    }
     private void Start()
     {
         // Get the helmet sprite renderer
@@ -38,7 +44,6 @@ public class MasksManager : MonoBehaviour
             Debug.LogError("Player helmet transform not assigned!");
         }
 
-        currentMask = masks[startingMask];
         if (startingMask != 0)
         {
             IndicateMask(startingMask);
@@ -51,8 +56,7 @@ public class MasksManager : MonoBehaviour
         }
 
         levelManager = FindObjectOfType<LevelManager>();
-        if (player != null)
-            playerCollider = player.GetComponent<Collider2D>();
+        player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
     }
 
     private void Update()
@@ -100,7 +104,8 @@ public class MasksManager : MonoBehaviour
         spaceText.SetActive(true);
         UpdatePreviewColor();
         IndicatedMask.transform.Find("Outline").GetComponent<SpriteRenderer>().enabled = false;
-        currentMask.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.5f);
+        if(currentMask!=null)
+            currentMask.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.5f);
 
         //  OverlapImg1.sprite = currentMask.GetComponent<SpriteRenderer>().sprite;
         //  OverlapImg2.sprite = IndicatedMask.GetComponent<SpriteRenderer>().sprite;
@@ -117,7 +122,8 @@ public class MasksManager : MonoBehaviour
         if (!CanSwapToMask(IndicatedMask))
             return;
 
-        currentMask.SetActive(false);
+        if(currentMask!=null)
+            currentMask.SetActive(false);
         currentMask = IndicatedMask;
         currentMask.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
         currentMask.SetActive(true);
@@ -192,7 +198,8 @@ public class MasksManager : MonoBehaviour
     {
         IndicatedMask.SetActive(false);
         IndicatedMask = null;
-        currentMask.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
+        if(currentMask!=null)
+            currentMask.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
 
         maskUIHighlight.SetParent(masksUIParent.transform.GetChild(currentMaskIndex), false);
         maskUIHighlight.anchoredPosition = Vector3.zero;
