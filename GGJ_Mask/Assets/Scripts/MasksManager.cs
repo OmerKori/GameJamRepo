@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class MasksManager : MonoBehaviour
 {
+    [SerializeField] int startingMask = 0;
     [SerializeField] GameObject[] masks;
     [SerializeField] GameObject masksUIParent;
     [SerializeField] RectTransform maskUIHighlight;
@@ -17,7 +18,13 @@ public class MasksManager : MonoBehaviour
 
     private void Start()
     {
-        currentMask = masks[0];
+        currentMask = masks[startingMask];
+        if(startingMask != 0)
+        {
+            IndicateMask(startingMask);
+            SwapMasks();
+        }
+
         levelManager = FindObjectOfType<LevelManager>();
         if (player != null)
             playerCollider = player.GetComponent<Collider2D>();
