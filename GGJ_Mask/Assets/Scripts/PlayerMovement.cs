@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator playerAnimator;
     private Rigidbody2D rb;
-    private bool isGrounded;
+    public bool isGrounded;
     private bool isLaddered;
     private bool isRight;
     private bool isIdle = true;
