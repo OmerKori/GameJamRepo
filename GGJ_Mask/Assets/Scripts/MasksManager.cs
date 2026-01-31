@@ -27,6 +27,7 @@ public class MasksManager : MonoBehaviour
     }
     private void Start()
     {
+<<<<<<< HEAD
         // Get the helmet sprite renderer
         if (playerHelmetObject != null)
         {
@@ -41,6 +42,10 @@ public class MasksManager : MonoBehaviour
             Debug.LogError("Player helmet transform not assigned!");
         }
 
+=======
+        helmetSpriteRenderer = playerHelmetObject.GetComponent<SpriteRenderer>();
+        currentMask = masks[startingMask];
+>>>>>>> 019ac8057f6112d460163124e5df34afd4e9ecdf
         if (startingMask != 0)
         {
             IndicateMask(startingMask);
@@ -53,7 +58,12 @@ public class MasksManager : MonoBehaviour
         }
 
         levelManager = FindObjectOfType<LevelManager>();
+<<<<<<< HEAD
         player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+=======
+        if (player != null)
+            playerCollider = player.GetComponent<Collider2D>();        
+>>>>>>> 019ac8057f6112d460163124e5df34afd4e9ecdf
     }
 
     private void Update()
@@ -126,7 +136,6 @@ public class MasksManager : MonoBehaviour
         currentMask.GetComponent<PolygonCollider2D>().enabled = true;
         currentMask.transform.Find("Outline").GetComponent<SpriteRenderer>().enabled = true;
 
-        // Update the player's helmet sprite
         UpdateHelmetSprite(indicatedMaskIndex);
 
         IndicatedMask = null;
@@ -136,22 +145,11 @@ public class MasksManager : MonoBehaviour
 
     private void UpdateHelmetSprite(int maskIndex)
     {
-        if (helmetSpriteRenderer == null)
-            return;
-
-        if (helmetSprites == null || helmetSprites.Length == 0)
-        {
-            Debug.LogWarning("Helmet sprites array is not assigned or empty!");
-            return;
-        }
+        if (helmetSpriteRenderer == null) return;
 
         if (maskIndex >= 0 && maskIndex < helmetSprites.Length)
         {
             helmetSpriteRenderer.sprite = helmetSprites[maskIndex];
-        }
-        else
-        {
-            Debug.LogError($"Helmet sprite index {maskIndex} out of range!");
         }
     }
 
