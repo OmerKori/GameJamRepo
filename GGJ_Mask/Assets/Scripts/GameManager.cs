@@ -17,6 +17,10 @@ public class GameManager : MonoBehaviour
     public static void LoadNextLevel()
     {
         currentLevel++;
+        if(currentLevel > 5)
+        {
+            currentLevel = 1;
+        }
         SceneManager.LoadScene("Level "+currentLevel);
     }
 
@@ -57,7 +61,8 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Level 1");
+        currentLevel = 1;
+        SceneManager.LoadScene("Level " + currentLevel);
     }
 
     public void QuitGame()

@@ -106,7 +106,14 @@ public class MasksManager : MonoBehaviour
         UpdatePreviewColor();
         IndicatedMask.transform.Find("Outline").GetComponent<SpriteRenderer>().enabled = false;
         if(IndicatedMask.transform.Find("AllowJump") !=null)
-            IndicatedMask.transform.Find("AllowJump").GetComponent<BoxCollider2D>().enabled = false;
+            {
+            var colliders = IndicatedMask.GetComponentsInChildren<BoxCollider2D>();
+
+            foreach (var col in colliders)
+            {
+                col.enabled = false;
+            }
+        }
         if (currentMask!=null)
             currentMask.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.5f);
 
@@ -132,7 +139,6 @@ public class MasksManager : MonoBehaviour
         if (currentMask.transform.Find("AllowJump") != null)
             currentMask.transform.Find("AllowJump").GetComponent<BoxCollider2D>().enabled = false;
         currentMask.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
-        currentMask.SetActive(true);
         currentMask.GetComponent<PolygonCollider2D>().enabled = true;
         spaceText.SetActive(false);
         currentMask.transform.Find("Outline").GetComponent<SpriteRenderer>().enabled = true;
@@ -203,6 +209,7 @@ public class MasksManager : MonoBehaviour
     public void RemoveIndicatedMask()
     {
         IndicatedMask.SetActive(false);
+        spaceText.SetActive(false);
         IndicatedMask = null;
         if(currentMask!=null)
             currentMask.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);

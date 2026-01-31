@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator playerAnimator;
     private Rigidbody2D rb;
-    public bool isGrounded;
+    private bool isGrounded;
     private bool isLaddered;
     private bool isRight;
     private bool isIdle = true;
@@ -96,16 +96,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            if (transform.position.y > collision.transform.position.y +transform.localScale.y / 2)
+            if (transform.position.y > collision.transform.position.y)
                 isGrounded = true;
         }
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Mask"))
         {
-            if(collision.collider.transform.Find("JumpBelow")!=null)
-                if (collision.collider.transform.Find("JumpBelow").position.y < transform.position.y)
-                {
-                    isGrounded = true;
-                }
+            if (collision.collider.transform.Find("JumpBelow").position.y > transform.position.y)
+                isGrounded = true;
         }
     }
 
@@ -115,7 +112,12 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false;
 
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Mask"))
+        {
             isGrounded = false;
+            if(collision.collider.transform.Find("AllowJump")&& transform.position.y<1)
+                isGrounded = true;
+        }
+         
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -127,8 +129,9 @@ public class PlayerMovement : MonoBehaviour
         {
             GameManager.LoadNextLevel();
         }
-        if (collision.gameObject.name == "AllowJump")
-        {
+
+        if(collision.gameObject.name=="AllowJump")
+            {
             isGrounded = true;
         }
     }
@@ -136,10 +139,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ladder"))
             isLaddered = false;
-        if (collision.gameObject.name == "AllowJump")
-        {
-            isGrounded = false;
-        }
     }
 
     private void flipSprite()
