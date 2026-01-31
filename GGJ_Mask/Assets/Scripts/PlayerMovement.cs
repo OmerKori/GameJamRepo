@@ -101,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Mask"))
         {
-            if (collision.collider.transform.Find("CanJump").position.y > transform.position.y)
+            if (collision.collider.transform.Find("CanJump").position.y > transform.position.y + transform.localScale.y/2)
                 isGrounded = true;
         }
     }
