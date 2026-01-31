@@ -74,12 +74,20 @@ public class PlayerMovement : MonoBehaviour
             if (transform.position.y > collision.transform.position.y)
                 isGrounded = true;
         }
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Mask"))
+        {
+            if (collision.collider.transform.Find("CanJump").position.y < transform.position.y)
+                isGrounded = true;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
             isGrounded = false;
+
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Mask"))
+                isGrounded = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

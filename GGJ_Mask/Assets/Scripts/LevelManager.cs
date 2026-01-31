@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    int currentLevel = 1;
     Vector2 startingPos;
     [SerializeField] GameObject player;
 
