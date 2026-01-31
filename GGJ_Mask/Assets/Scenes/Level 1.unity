@@ -124,6 +124,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7086667206559296728, guid: fc07f2c485721d740986f5a5128c78c7, type: 3}
   m_PrefabInstance: {fileID: 2779539768161709245}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &66377981 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6249522933712266714, guid: c50fe4a0cd5c685459aad5577e545c99, type: 3}
+  m_PrefabInstance: {fileID: 5100224029746615707}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &90487142
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,6 +139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 90487144}
   - component: {fileID: 90487143}
+  - component: {fileID: 90487145}
   m_Layer: 0
   m_Name: LevelsManager
   m_TagString: Untagged
@@ -168,6 +174,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &90487145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90487142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 836c9247f639f574f8b2a914a8d86b77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelManager
+  player: {fileID: 66377981}
 --- !u!1 &148129121
 GameObject:
   m_ObjectHideFlags: 0
@@ -932,7 +951,6 @@ GameObject:
   - component: {fileID: 786247618}
   - component: {fileID: 786247617}
   - component: {fileID: 786247619}
-  - component: {fileID: 786247620}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -959,6 +977,9 @@ MonoBehaviour:
   maskUIHighlight: {fileID: 1709194551}
   OverlapImg1: {fileID: 2084422192}
   OverlapImg2: {fileID: 148129122}
+  player: {fileID: 66377981}
+  previewValidColor: {r: 1, g: 1, b: 1, a: 0.03}
+  previewInvalidColor: {r: 1, g: 0, b: 0, a: 0.2}
   currentMaskIndex: 0
   indicatedMaskIndex: -1
 --- !u!224 &786247618
@@ -988,18 +1009,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 786247616}
   m_CullTransparentMesh: 1
---- !u!114 &786247620
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 786247616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 836c9247f639f574f8b2a914a8d86b77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LevelManager
 --- !u!1 &916802437
 GameObject:
   m_ObjectHideFlags: 0
@@ -2869,6 +2878,6 @@ SceneRoots:
   - {fileID: 799875011583673816}
   - {fileID: 2039638050}
   - {fileID: 1236426727}
-  - {fileID: 5100224029746615707}
   - {fileID: 786247618}
   - {fileID: 90487144}
+  - {fileID: 5100224029746615707}
