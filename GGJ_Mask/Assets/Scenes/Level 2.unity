@@ -1164,7 +1164,6 @@ MonoBehaviour:
   - {fileID: 1813289089}
   - {fileID: 12904531}
   - {fileID: 876240946}
-  helmets: []
   masksUIParent: {fileID: 1911373364}
   maskUIHighlight: {fileID: 1709194551}
   OverlapImg1: {fileID: 2084422192}
@@ -1172,6 +1171,11 @@ MonoBehaviour:
   player: {fileID: 1807039758}
   previewValidColor: {r: 1, g: 1, b: 1, a: 0.03}
   previewInvalidColor: {r: 1, g: 0, b: 0, a: 0.2}
+  playerHelmetObject: {fileID: 5100224029746615708}
+  helmetSprites:
+  - {fileID: -8285773504889700863, guid: dadfe2e7b7389d842abb51a8edb878eb, type: 3}
+  - {fileID: -867696522777932473, guid: dadfe2e7b7389d842abb51a8edb878eb, type: 3}
+  - {fileID: 1636832292, guid: dadfe2e7b7389d842abb51a8edb878eb, type: 3}
   currentMaskIndex: 0
   indicatedMaskIndex: -1
 --- !u!224 &786247618
@@ -3343,6 +3347,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c50fe4a0cd5c685459aad5577e545c99, type: 3}
+--- !u!4 &5100224029746615708 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3742049127471489748, guid: c50fe4a0cd5c685459aad5577e545c99, type: 3}
+  m_PrefabInstance: {fileID: 5100224029746615707}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6713607862583389077
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -4,45 +4,66 @@ public class MasksManager : MonoBehaviour
 {
     public int startingMask = 0;
     [SerializeField] GameObject[] masks;
-    [SerializeField] Sprite[] helmets;
     [SerializeField] GameObject masksUIParent;
     [SerializeField] RectTransform maskUIHighlight;
-    [SerializeField] Image OverlapImg1,OverlapImg2;
+    [SerializeField] Image OverlapImg1, OverlapImg2;
     [SerializeField] GameObject player;
     [SerializeField] Color previewValidColor = new Color(1f, 1f, 1f, 0.03f);
     [SerializeField] Color previewInvalidColor = new Color(1f, 0f, 0f, 0.2f);
 
-    GameObject currentMask,IndicatedMask = null;
+    [SerializeField] Transform playerHelmetObject;
+    [SerializeField] Sprite[] helmetSprites;
+    GameObject currentMask, IndicatedMask = null;
     public int currentMaskIndex = 0, indicatedMaskIndex = -1;
+    LevelManager levelManager;
     Collider2D playerCollider;
-    private void Awake()
-    {
-        if (player != null)
-            playerCollider = player.GetComponent<Collider2D>();
+    SpriteRenderer helmetSpriteRenderer;
 
-        player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-        
-    }
     private void Start()
     {
-  
-        IndicateMask(startingMask);
-            SwapMasks();
-        player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        // Get the helmet sprite renderer
+        if (playerHelmetObject != null)
+        {
+            helmetSpriteRenderer = playerHelmetObject.GetComponent<SpriteRenderer>();
+            if (helmetSpriteRenderer == null)
+            {
+                Debug.LogError("Player helmet object doesn't have a SpriteRenderer component!");
+            }
+        }
+        else
+        {
+            Debug.LogError("Player helmet transform not assigned!");
+        }
 
+        currentMask = masks[startingMask];
+        if (startingMask != 0)
+        {
+            IndicateMask(startingMask);
+            SwapMasks();
+        }
+        else
+        {
+            // Set the initial helmet sprite
+            UpdateHelmetSprite(startingMask);
+        }
+
+        levelManager = FindObjectOfType<LevelManager>();
+        if (player != null)
+            playerCollider = player.GetComponent<Collider2D>();
     }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.U))
             IndicateMask(0);
         else if (Input.GetKeyDown(KeyCode.I))
             IndicateMask(1);
-        else if(Input.GetKeyDown(KeyCode.O))
+        else if (Input.GetKeyDown(KeyCode.O))
             IndicateMask(2);
-        else if(Input.GetKeyDown(KeyCode.P))
+        else if (Input.GetKeyDown(KeyCode.P))
             IndicateMask(3);
-            
-        if(Input.GetKeyDown(KeyCode.Space) && IndicatedMask!=null)
+
+        if (Input.GetKeyDown(KeyCode.Space) && IndicatedMask != null)
             SwapMasks();
 
         if (IndicatedMask != null)
@@ -51,11 +72,11 @@ public class MasksManager : MonoBehaviour
 
     public void IndicateMask(int i)
     {
-        if (masks[i] == currentMask) 
+        if (masks[i] == currentMask)
             return;
-        
-        if(masks[i] == IndicatedMask)
-        { 
+
+        if (masks[i] == IndicatedMask)
+        {
             RemoveIndicatedMask();
             return;
         }
@@ -66,7 +87,7 @@ public class MasksManager : MonoBehaviour
             return;
         }
 
-        if(IndicatedMask != null)
+        if (IndicatedMask != null)
             IndicatedMask.SetActive(false);
 
         //enable indicated mask and change transparencies
@@ -75,12 +96,11 @@ public class MasksManager : MonoBehaviour
         IndicatedMask.SetActive(true);
         UpdatePreviewColor();
         IndicatedMask.transform.Find("Outline").GetComponent<SpriteRenderer>().enabled = false;
-        if (currentMask != null)
-            currentMask.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.5f);
+        currentMask.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.5f);
 
-      //  OverlapImg1.sprite = currentMask.GetComponent<SpriteRenderer>().sprite;
-      //  OverlapImg2.sprite = IndicatedMask.GetComponent<SpriteRenderer>().sprite;
-      //  OverlapImg1.gameObject.SetActive(true);
+        //  OverlapImg1.sprite = currentMask.GetComponent<SpriteRenderer>().sprite;
+        //  OverlapImg2.sprite = IndicatedMask.GetComponent<SpriteRenderer>().sprite;
+        //  OverlapImg1.gameObject.SetActive(true);
         indicatedMaskIndex = i;
 
         //move highlight in UI
@@ -89,21 +109,44 @@ public class MasksManager : MonoBehaviour
     }
 
     public void SwapMasks()
-    {        
+    {
         if (!CanSwapToMask(IndicatedMask))
             return;
 
-        if (currentMask != null)
-            currentMask.SetActive(false);
+        currentMask.SetActive(false);
         currentMask = IndicatedMask;
-        currentMask.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0,1);
+        currentMask.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
         currentMask.SetActive(true);
         currentMask.GetComponent<PolygonCollider2D>().enabled = true;
         currentMask.transform.Find("Outline").GetComponent<SpriteRenderer>().enabled = true;
 
+        // Update the player's helmet sprite
+        UpdateHelmetSprite(indicatedMaskIndex);
+
         IndicatedMask = null;
         currentMaskIndex = indicatedMaskIndex;
-        indicatedMaskIndex = -1;     
+        indicatedMaskIndex = -1;
+    }
+
+    private void UpdateHelmetSprite(int maskIndex)
+    {
+        if (helmetSpriteRenderer == null)
+            return;
+
+        if (helmetSprites == null || helmetSprites.Length == 0)
+        {
+            Debug.LogWarning("Helmet sprites array is not assigned or empty!");
+            return;
+        }
+
+        if (maskIndex >= 0 && maskIndex < helmetSprites.Length)
+        {
+            helmetSpriteRenderer.sprite = helmetSprites[maskIndex];
+        }
+        else
+        {
+            Debug.LogError($"Helmet sprite index {maskIndex} out of range!");
+        }
     }
 
     private bool CanSwapToMask(GameObject mask)
@@ -148,7 +191,7 @@ public class MasksManager : MonoBehaviour
 
         maskUIHighlight.SetParent(masksUIParent.transform.GetChild(currentMaskIndex), false);
         maskUIHighlight.anchoredPosition = Vector3.zero;
-     //   OverlapImg1.gameObject.SetActive(false);
+        //   OverlapImg1.gameObject.SetActive(false);
     }
-    
+
 }

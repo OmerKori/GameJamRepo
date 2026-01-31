@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     private bool UpPressed;
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();     
+        rb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
     }
 
@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.gravityScale = rb.linearVelocityY > 0 ? risingGravityScale : fallingGravityScale;
 
-        if(transform.position.y < -10)
+        if (transform.position.y < -10)
         {
             FindObjectOfType<LevelManager>().ResetLevel();
         }
@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
             isRight = false;
             flipSprite();
         }
-        
+
         if (isGrounded)
         {
             rb.AddForce(acceleration * Speed * new Vector2(inputX, 0));
@@ -112,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false;
 
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Mask"))
-                isGrounded = false;
+            isGrounded = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
