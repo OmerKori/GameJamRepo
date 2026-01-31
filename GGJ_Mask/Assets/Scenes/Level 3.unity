@@ -1299,6 +1299,7 @@ MonoBehaviour:
   previewInvalidColor: {r: 1, g: 0, b: 0, a: 0.2}
   playerHelmetObject: {fileID: 5100224029746615708}
   helmetSprites: []
+  spaceText: {fileID: 1799389897}
   currentMaskIndex: 0
   indicatedMaskIndex: -1
 --- !u!224 &786247618
