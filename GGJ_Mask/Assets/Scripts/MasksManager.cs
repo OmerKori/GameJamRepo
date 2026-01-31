@@ -16,17 +16,22 @@ public class MasksManager : MonoBehaviour
     public int currentMaskIndex = 0, indicatedMaskIndex = -1;
     LevelManager levelManager;
     Collider2D playerCollider;
-
-    private void Start()
+    private void Awake()
     {
-
-            IndicateMask(startingMask);
-            SwapMasks();
-        
-
-        levelManager = FindObjectOfType<LevelManager>();
         if (player != null)
             playerCollider = player.GetComponent<Collider2D>();
+
+        player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        
+    }
+    private void Start()
+    {
+        levelManager = FindObjectOfType<LevelManager>();
+   
+        IndicateMask(startingMask);
+            SwapMasks();
+        player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+
     }
     private void Update()
     {
