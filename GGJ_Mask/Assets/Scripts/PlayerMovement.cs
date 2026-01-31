@@ -71,6 +71,12 @@ public class PlayerMovement : MonoBehaviour
             if (transform.position.y>collision.transform.position.y)
                 isGrounded = true;
         }
+
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("EndDoor"))
+        {
+            GameManager.LoadNextLevel();
+        }
+
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
