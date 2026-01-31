@@ -48,6 +48,7 @@ public class MasksManager : MonoBehaviour
         }
         else
         {
+            currentMask = masks[startingMask];
             // Set the initial helmet sprite
             UpdateHelmetSprite(startingMask);
         }
@@ -100,7 +101,9 @@ public class MasksManager : MonoBehaviour
         IndicatedMask.SetActive(true);
         UpdatePreviewColor();
         IndicatedMask.transform.Find("Outline").GetComponent<SpriteRenderer>().enabled = false;
-        if(currentMask!=null)
+        if(IndicatedMask.transform.Find("AllowJump") !=null)
+            IndicatedMask.transform.Find("AllowJump").GetComponent<BoxCollider2D>().enabled = false;
+        if (currentMask!=null)
             currentMask.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.5f);
 
         //  OverlapImg1.sprite = currentMask.GetComponent<SpriteRenderer>().sprite;
@@ -118,9 +121,12 @@ public class MasksManager : MonoBehaviour
         if (!CanSwapToMask(IndicatedMask))
             return;
 
+        print(currentMask);
         if(currentMask!=null)
             currentMask.SetActive(false);
         currentMask = IndicatedMask;
+        if (currentMask.transform.Find("AllowJump") != null)
+            currentMask.transform.Find("AllowJump").GetComponent<BoxCollider2D>().enabled = false;
         currentMask.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
         currentMask.SetActive(true);
         currentMask.GetComponent<PolygonCollider2D>().enabled = true;

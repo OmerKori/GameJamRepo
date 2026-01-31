@@ -139,7 +139,6 @@ GameObject:
   m_Component:
   - component: {fileID: 90487144}
   - component: {fileID: 90487143}
-  - component: {fileID: 90487145}
   m_Layer: 0
   m_Name: LevelsManager
   m_TagString: Untagged
@@ -174,19 +173,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &90487145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 90487142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 836c9247f639f574f8b2a914a8d86b77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LevelManager
-  player: {fileID: 66377981}
 --- !u!1 &148129121
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,6 +937,7 @@ GameObject:
   - component: {fileID: 786247618}
   - component: {fileID: 786247617}
   - component: {fileID: 786247619}
+  - component: {fileID: 786247620}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1014,6 +1001,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 786247616}
   m_CullTransparentMesh: 1
+--- !u!114 &786247620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786247616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 836c9247f639f574f8b2a914a8d86b77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelManager
 --- !u!1 &916802437
 GameObject:
   m_ObjectHideFlags: 0
