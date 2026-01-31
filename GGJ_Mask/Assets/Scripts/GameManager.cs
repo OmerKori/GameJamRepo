@@ -12,6 +12,6 @@ public class GameManager : MonoBehaviour
     public static void LoadNextLevel()
     {
         currentLevel++;
-        SceneManager.LoadScene("Level"+currentLevel);
+        SceneManager.LoadScene("Level "+currentLevel);
     }
 }

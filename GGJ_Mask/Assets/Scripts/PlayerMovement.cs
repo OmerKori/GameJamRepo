@@ -72,10 +72,7 @@ public class PlayerMovement : MonoBehaviour
                 isGrounded = true;
         }
 
-        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("EndDoor"))
-        {
-            GameManager.LoadNextLevel();
-        }
+ 
 
     }
     private void OnCollisionExit2D(Collision2D collision)
@@ -88,6 +85,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ladder"))
             isLaddered = true;
+       
+        if (collision.gameObject.layer == LayerMask.NameToLayer("EndDoor"))
+        {
+            GameManager.LoadNextLevel();
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
