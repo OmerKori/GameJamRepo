@@ -6,13 +6,21 @@ public class MasksManager : MonoBehaviour
     [SerializeField] GameObject masksUIParent;
     [SerializeField] RectTransform maskUIHighlight;
     [SerializeField] Image OverlapImg1,OverlapImg2;
+    [SerializeField] GameObject player;
+    [SerializeField] Color previewValidColor = new Color(1f, 1f, 1f, 0.03f);
+    [SerializeField] Color previewInvalidColor = new Color(1f, 0f, 0f, 0.2f);
 
     GameObject currentMask,IndicatedMask = null;
     public int currentMaskIndex = 0, indicatedMaskIndex = -1;
+    LevelManager levelManager;
+    Collider2D playerCollider;
 
     private void Start()
     {
         currentMask = masks[0];
+        levelManager = FindObjectOfType<LevelManager>();
+        if (player != null)
+            playerCollider = player.GetComponent<Collider2D>();
     }
     private void Update()
     {
@@ -27,6 +35,9 @@ public class MasksManager : MonoBehaviour
             
         if(Input.GetKeyDown(KeyCode.Space) && IndicatedMask!=null)
             SwapMasks();
+
+        if (IndicatedMask != null)
+            UpdatePreviewColor();
     }
 
     public void IndicateMask(int i)
@@ -53,7 +64,7 @@ public class MasksManager : MonoBehaviour
         IndicatedMask = masks[i];
         IndicatedMask.GetComponent<PolygonCollider2D>().enabled = false;
         IndicatedMask.SetActive(true);
-        IndicatedMask.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.03f);
+        UpdatePreviewColor();
         IndicatedMask.transform.Find("Outline").GetComponent<SpriteRenderer>().enabled = false;
         currentMask.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.5f);
 
@@ -69,6 +80,9 @@ public class MasksManager : MonoBehaviour
 
     public void SwapMasks()
     {
+        if (!CanSwapToMask(IndicatedMask))
+            return;
+
         currentMask.SetActive(false);
         currentMask = IndicatedMask;
         currentMask.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0,1);
@@ -79,6 +93,40 @@ public class MasksManager : MonoBehaviour
         IndicatedMask = null;
         currentMaskIndex = indicatedMaskIndex;
         indicatedMaskIndex = -1;
+    }
+
+    private bool CanSwapToMask(GameObject mask)
+    {
+        if (player == null || playerCollider == null || mask == null)
+            return false;
+
+        PolygonCollider2D collider = mask.GetComponent<PolygonCollider2D>();
+        if (collider == null)
+            return false;
+
+        bool wasEnabled = collider.enabled;
+        if (!wasEnabled)
+            collider.enabled = true;
+
+        bool isTouching = playerCollider.IsTouching(collider);
+        bool isInside = collider.OverlapPoint(playerCollider.bounds.center);
+
+        if (!wasEnabled)
+            collider.enabled = false;
+
+        return !(isTouching || isInside);
+    }
+
+    private void UpdatePreviewColor()
+    {
+        if (IndicatedMask == null)
+            return;
+
+        SpriteRenderer spriteRenderer = IndicatedMask.GetComponent<SpriteRenderer>();
+        if (spriteRenderer == null)
+            return;
+
+        spriteRenderer.color = CanSwapToMask(IndicatedMask) ? previewValidColor : previewInvalidColor;
     }
 
     public void RemoveIndicatedMask()
