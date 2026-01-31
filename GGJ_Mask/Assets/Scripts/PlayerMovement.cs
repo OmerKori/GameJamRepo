@@ -42,6 +42,11 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.gravityScale = rb.linearVelocityY > 0 ? risingGravityScale : fallingGravityScale;
 
+        if(transform.position.y < -10)
+        {
+            FindObjectOfType<LevelManager>().ResetLevel();
+        }
+
         if (inputX < 0 && !isRight)
         {
             isRight = true;
@@ -96,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Mask"))
         {
-            if (collision.collider.transform.Find("CanJump").position.y < transform.position.y)
+            if (collision.collider.transform.Find("CanJump").position.y > transform.position.y)
                 isGrounded = true;
         }
     }

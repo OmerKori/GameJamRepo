@@ -1183,7 +1183,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2379828069226493404, guid: fc07f2c485721d740986f5a5128c78c7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.28
+      value: -1.53
       objectReference: {fileID: 0}
     - target: {fileID: 2379828069226493404, guid: fc07f2c485721d740986f5a5128c78c7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1242,7 +1242,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7086667206559296728, guid: fc07f2c485721d740986f5a5128c78c7, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1731158759}
+      addedObject: {fileID: 1731158761}
   m_SourcePrefab: {fileID: 100100000, guid: fc07f2c485721d740986f5a5128c78c7, type: 3}
 --- !u!4 &774289655 stripped
 Transform:
@@ -2194,7 +2194,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2379828069226493404, guid: fc07f2c485721d740986f5a5128c78c7, type: 3}
   m_PrefabInstance: {fileID: 723361490}
   m_PrefabAsset: {fileID: 0}
---- !u!60 &1731158759
+--- !u!60 &1731158761
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2244,34 +2244,34 @@ PolygonCollider2D:
       - {x: -15, y: -8.4375}
       - {x: 15, y: -8.4375}
       - {x: 15, y: 8.4375}
-    - - {x: -2.75, y: -2}
-      - {x: -4.375, y: -1.8125}
-      - {x: -6.8125, y: -1.3125}
-      - {x: -8.125, y: -0.875}
-      - {x: -8.125, y: 2.0625}
-      - {x: -7.75, y: 1.9375}
-      - {x: -6.8125, y: 1.6875}
-      - {x: -4.75, y: 1.3125}
-      - {x: -3.6875, y: 1.1875}
-      - {x: -1.9375, y: 1.0625}
-      - {x: 0.8125, y: 1.0625}
-      - {x: 1.875, y: 1.125}
-      - {x: 2.5625, y: 1.1875}
-      - {x: 4, y: 1.375}
-      - {x: 5.6875, y: 1.6875}
-      - {x: 7.0625, y: 2.0625}
-      - {x: 7.75, y: 2.3125}
-      - {x: 8.3125, y: 2.5625}
-      - {x: 8.3125, y: -0.4375}
-      - {x: 6.8125, y: -1.0625}
-      - {x: 5.5, y: -1.4375}
-      - {x: 4.3125, y: -1.6875}
-      - {x: 2.5, y: -1.9375}
-      - {x: 1.875, y: -2}
-      - {x: 0.875, y: -2.0625}
-      - {x: 0.8125, y: -2.125}
-      - {x: -1.6875, y: -2.125}
-      - {x: -1.75, y: -2.0625}
+    - - {x: -2.75, y: -5.4375}
+      - {x: -4.375, y: -5.25}
+      - {x: -5.1875, y: -5.125}
+      - {x: -6.8125, y: -4.75}
+      - {x: -8.125, y: -4.3125}
+      - {x: -8.125, y: -1.375}
+      - {x: -7.75, y: -1.5}
+      - {x: -6.8125, y: -1.75}
+      - {x: -4.75, y: -2.125}
+      - {x: -3.6875, y: -2.25}
+      - {x: -1.9375, y: -2.375}
+      - {x: 0.8125, y: -2.375}
+      - {x: 1.875, y: -2.3125}
+      - {x: 3.125, y: -2.1875}
+      - {x: 4.8125, y: -1.9375}
+      - {x: 6.625, y: -1.5625}
+      - {x: 7.75, y: -1.125}
+      - {x: 8.3125, y: -0.875}
+      - {x: 8.3125, y: -3.875}
+      - {x: 6.8125, y: -4.5}
+      - {x: 5.5, y: -4.875}
+      - {x: 4.3125, y: -5.125}
+      - {x: 2.5, y: -5.375}
+      - {x: 1.875, y: -5.4375}
+      - {x: 0.875, y: -5.5}
+      - {x: 0.8125, y: -5.5625}
+      - {x: -1.6875, y: -5.5625}
+      - {x: -1.75, y: -5.5}
   m_UseDelaunayMesh: 1
 --- !u!4 &1753441598 stripped
 Transform:
@@ -2998,7 +2998,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6105202045463479912, guid: c50fe4a0cd5c685459aad5577e545c99, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.09
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 6105202045463479912, guid: c50fe4a0cd5c685459aad5577e545c99, type: 3}
       propertyPath: m_LocalPosition.z
