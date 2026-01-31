@@ -19,12 +19,10 @@ public class MasksManager : MonoBehaviour
 
     private void Start()
     {
-        currentMask = masks[startingMask];
-        if(startingMask != 0)
-        {
+
             IndicateMask(startingMask);
             SwapMasks();
-        }
+        
 
         levelManager = FindObjectOfType<LevelManager>();
         if (player != null)
@@ -74,7 +72,8 @@ public class MasksManager : MonoBehaviour
         IndicatedMask.SetActive(true);
         UpdatePreviewColor();
         IndicatedMask.transform.Find("Outline").GetComponent<SpriteRenderer>().enabled = false;
-        currentMask.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.5f);
+        if (currentMask != null)
+            currentMask.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.5f);
 
       //  OverlapImg1.sprite = currentMask.GetComponent<SpriteRenderer>().sprite;
       //  OverlapImg2.sprite = IndicatedMask.GetComponent<SpriteRenderer>().sprite;
@@ -91,7 +90,8 @@ public class MasksManager : MonoBehaviour
         if (!CanSwapToMask(IndicatedMask))
             return;
 
-        currentMask.SetActive(false);
+        if (currentMask != null)
+            currentMask.SetActive(false);
         currentMask = IndicatedMask;
         currentMask.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0,1);
         currentMask.SetActive(true);
