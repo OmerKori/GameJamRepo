@@ -4,6 +4,7 @@ public class MasksManager : MonoBehaviour
 {
     [SerializeField] int startingMask = 0;
     [SerializeField] GameObject[] masks;
+    [SerializeField] Sprite[] helmets;
     [SerializeField] GameObject masksUIParent;
     [SerializeField] RectTransform maskUIHighlight;
     [SerializeField] Image OverlapImg1,OverlapImg2;
@@ -86,7 +87,7 @@ public class MasksManager : MonoBehaviour
     }
 
     public void SwapMasks()
-    {
+    {        
         if (!CanSwapToMask(IndicatedMask))
             return;
 
@@ -99,7 +100,7 @@ public class MasksManager : MonoBehaviour
 
         IndicatedMask = null;
         currentMaskIndex = indicatedMaskIndex;
-        indicatedMaskIndex = -1;
+        indicatedMaskIndex = -1;     
     }
 
     private bool CanSwapToMask(GameObject mask)

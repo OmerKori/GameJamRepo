@@ -16,16 +16,16 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator playerAnimator;
     private Rigidbody2D rb;
-    private SpriteRenderer sr;
     private bool isGrounded;
     private bool isLaddered;
+    private bool isRight;
+    private bool isIdle;
 
     private float inputX;
     private bool WPressed;
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();     
         playerAnimator = GetComponent<Animator>();
     }
 
@@ -39,20 +39,37 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.gravityScale = rb.linearVelocityY > 0 ? risingGravityScale : fallingGravityScale;
 
-        //Fix Flipping 
-
+        if (inputX < 0 && !isRight)
+        {
+            isRight = true;
+            flipSprite();
+        }
+        else if (inputX > 0 && isRight)
+        {
+            isRight = false;
+            flipSprite();
+        }
+        
         if (isGrounded)
         {
             rb.AddForce(acceleration * Speed * new Vector2(inputX, 0));
-            playerAnimator.SetTrigger("Walk");
         }
         else
         {
             rb.AddForce(acceleration * Speed * 2 / 3 * new Vector2(inputX, 0));
-            playerAnimator.SetTrigger("Walk");
         }
 
         //When Not Moving: playerAnimator.SetTrigger("Idle");
+        if (rb.linearVelocity == Vector2.zero && !isIdle)
+        {
+            isIdle = true;
+            playerAnimator.SetTrigger("Idle");
+        }
+        else if (rb.linearVelocity != Vector2.zero && isIdle)
+        {
+            isIdle = false;
+            playerAnimator.SetTrigger("Walk");
+        }
 
         if (isLaddered)
         {
@@ -104,5 +121,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ladder"))
             isLaddered = false;
+    }
+
+    private void flipSprite()
+    {
+        transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
     }
 }

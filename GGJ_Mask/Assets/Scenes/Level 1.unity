@@ -970,9 +970,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16afb12f99ddc8f46b201fcc2e2ed77a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MasksManager
+  startingMask: 0
   masks:
   - {fileID: 1813289089}
   - {fileID: 12904531}
+  helmets:
+  - {fileID: -8285773504889700863, guid: dadfe2e7b7389d842abb51a8edb878eb, type: 3}
+  - {fileID: -867696522777932473, guid: dadfe2e7b7389d842abb51a8edb878eb, type: 3}
+  - {fileID: 1636832292, guid: dadfe2e7b7389d842abb51a8edb878eb, type: 3}
+  - {fileID: -1444840575, guid: dadfe2e7b7389d842abb51a8edb878eb, type: 3}
   masksUIParent: {fileID: 1911373364}
   maskUIHighlight: {fileID: 1709194551}
   OverlapImg1: {fileID: 2084422192}
