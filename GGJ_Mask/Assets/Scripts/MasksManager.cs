@@ -8,7 +8,8 @@ public class MasksManager : MonoBehaviour
     [SerializeField] Image OverlapImg1,OverlapImg2;
 
     GameObject currentMask,IndicatedMask = null;
-    int indicatedMaskIndex = -1, currentMaskIndex = 0;
+    public int currentMaskIndex = 0, indicatedMaskIndex = -1;
+
     private void Start()
     {
         currentMask = masks[0];
@@ -80,7 +81,7 @@ public class MasksManager : MonoBehaviour
         indicatedMaskIndex = -1;
     }
 
-    private void RemoveIndicatedMask()
+    public void RemoveIndicatedMask()
     {
         IndicatedMask.SetActive(false);
         IndicatedMask = null;
