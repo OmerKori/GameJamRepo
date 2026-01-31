@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float inputX;
     private bool WPressed;
+    private bool UpPressed;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();     
@@ -34,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     {
         inputX = Input.GetAxisRaw("Horizontal");
         WPressed = Input.GetKey(KeyCode.W);
+        UpPressed = Input.GetKey(KeyCode.UpArrow);
     }
 
     private void FixedUpdate()
@@ -74,12 +76,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (isLaddered)
         {
-            if (WPressed)
+            if (WPressed || UpPressed)
                 rb.linearVelocityY = ladderSpeed;
             else
                 rb.linearVelocityY = 0;
         }
-        else if (isGrounded && WPressed)
+        else if (isGrounded && WPressed || isGrounded && UpPressed)
         {
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         }
