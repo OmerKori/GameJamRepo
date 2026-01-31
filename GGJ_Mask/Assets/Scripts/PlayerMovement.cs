@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     private bool isLaddered;
     private bool isRight;
-    private bool isIdle;
+    private bool isIdle = true;
 
     private float inputX;
     private bool WPressed;
@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();     
         playerAnimator = GetComponent<Animator>();
     }
+
 
     private void Update()
     {
