@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float Speed = 8f;
     [SerializeField] private float acceleration = 30f;
     [SerializeField] private float decceleration = 30f;
+    [SerializeField] private float risingGravityScale = 1.3f;
+    [SerializeField] private float fallingGravityScale = 1.9f;
 
     [Header("Jump")]
     [SerializeField] private float jumpForce = 12f;
@@ -14,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator playerAnimator;
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
     private bool isGrounded;
     private bool isLaddered;
 
@@ -22,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
         playerAnimator = GetComponent<Animator>();
     }
 
@@ -33,9 +37,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (inputX != 0)
-            transform.rotation = Quaternion.Euler(0, inputX * 180f, 0);
-        
+        rb.gravityScale = rb.linearVelocityY > 0 ? risingGravityScale : fallingGravityScale;
+
         //Fix Flipping 
 
         if (isGrounded)
@@ -68,13 +71,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            if (transform.position.y>collision.transform.position.y)
+            if (transform.position.y > collision.transform.position.y)
                 isGrounded = true;
         }
-
- 
-
     }
+
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
@@ -85,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ladder"))
             isLaddered = true;
-       
+
         if (collision.gameObject.layer == LayerMask.NameToLayer("EndDoor"))
         {
             GameManager.LoadNextLevel();
