@@ -3,11 +3,12 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     Vector2 startingPos;
-    [SerializeField] GameObject player;
+    GameObject player;
 
     MasksManager masksManager;
     private void Start()
     {
+        player = FindObjectOfType<PlayerMovement>().gameObject;
         startingPos = player.transform.position;
         masksManager = FindObjectOfType<MasksManager>();
     }

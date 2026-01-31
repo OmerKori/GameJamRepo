@@ -96,13 +96,16 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            if (transform.position.y > collision.transform.position.y)
+            if (transform.position.y > collision.transform.position.y +transform.localScale.y / 2)
                 isGrounded = true;
         }
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Mask"))
         {
-            if (collision.collider.transform.Find("CanJump").position.y > transform.position.y + transform.localScale.y/2)
-                isGrounded = true;
+            if(collision.collider.transform.Find("JumpBelow")!=null)
+                if (collision.collider.transform.Find("JumpBelow").position.y < transform.position.y)
+                {
+                    isGrounded = true;
+                }
         }
     }
 
@@ -124,11 +127,19 @@ public class PlayerMovement : MonoBehaviour
         {
             GameManager.LoadNextLevel();
         }
+        if (collision.gameObject.name == "AllowJump")
+        {
+            isGrounded = true;
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ladder"))
             isLaddered = false;
+        if (collision.gameObject.name == "AllowJump")
+        {
+            isGrounded = false;
+        }
     }
 
     private void flipSprite()
