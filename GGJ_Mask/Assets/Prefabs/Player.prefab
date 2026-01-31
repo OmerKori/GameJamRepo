@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &3742049127471489748
 Transform:
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 393855417825976979}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -275,6 +275,8 @@ MonoBehaviour:
   Speed: 3
   acceleration: 40
   decceleration: 30
+  risingGravityScale: 4
+  fallingGravityScale: 7
   jumpForce: 15
   ladderSpeed: 10
 --- !u!95 &393855417825976979
