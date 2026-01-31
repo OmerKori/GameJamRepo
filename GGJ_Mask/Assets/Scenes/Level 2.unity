@@ -1027,6 +1027,7 @@ MonoBehaviour:
   - {fileID: 1813289089}
   - {fileID: 12904531}
   - {fileID: 876240946}
+  helmets: []
   masksUIParent: {fileID: 1911373364}
   maskUIHighlight: {fileID: 1709194551}
   OverlapImg1: {fileID: 2084422192}
@@ -1985,7 +1986,7 @@ Transform:
   m_GameObject: {fileID: 1681281673}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -4.62, z: 0}
+  m_LocalPosition: {x: 0, y: -0.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

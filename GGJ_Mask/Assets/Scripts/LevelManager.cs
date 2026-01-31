@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour
     public void ResetLevel()
     {
         player.transform.position = startingPos;
-        masksManager.IndicateMask(0);
+        masksManager.IndicateMask(masksManager.startingMask);
         masksManager.SwapMasks();
     }
 }

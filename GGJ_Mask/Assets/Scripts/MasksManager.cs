@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class MasksManager : MonoBehaviour
 {
-    [SerializeField] int startingMask = 0;
+    public int startingMask = 0;
     [SerializeField] GameObject[] masks;
     [SerializeField] Sprite[] helmets;
     [SerializeField] GameObject masksUIParent;
