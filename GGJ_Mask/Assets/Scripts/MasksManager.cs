@@ -13,6 +13,9 @@ public class MasksManager : MonoBehaviour
 
     [SerializeField] Transform playerHelmetObject;
     [SerializeField] Sprite[] helmetSprites;
+
+    [SerializeField] GameObject spaceText;
+
     GameObject currentMask, IndicatedMask = null;
     public int currentMaskIndex = 0, indicatedMaskIndex = -1;
     LevelManager levelManager;
@@ -94,6 +97,7 @@ public class MasksManager : MonoBehaviour
         IndicatedMask = masks[i];
         IndicatedMask.GetComponent<PolygonCollider2D>().enabled = false;
         IndicatedMask.SetActive(true);
+        spaceText.SetActive(true);
         UpdatePreviewColor();
         IndicatedMask.transform.Find("Outline").GetComponent<SpriteRenderer>().enabled = false;
         currentMask.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.5f);
@@ -118,6 +122,7 @@ public class MasksManager : MonoBehaviour
         currentMask.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
         currentMask.SetActive(true);
         currentMask.GetComponent<PolygonCollider2D>().enabled = true;
+        spaceText.SetActive(false);
         currentMask.transform.Find("Outline").GetComponent<SpriteRenderer>().enabled = true;
 
         // Update the player's helmet sprite
