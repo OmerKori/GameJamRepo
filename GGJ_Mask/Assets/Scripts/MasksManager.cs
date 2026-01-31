@@ -14,21 +14,22 @@ public class MasksManager : MonoBehaviour
 
     GameObject currentMask,IndicatedMask = null;
     public int currentMaskIndex = 0, indicatedMaskIndex = -1;
-    LevelManager levelManager;
     Collider2D playerCollider;
-
-    private void Start()
+    private void Awake()
     {
-        currentMask = masks[startingMask];
-        if(startingMask != 0)
-        {
-            IndicateMask(startingMask);
-            SwapMasks();
-        }
-
-        levelManager = FindObjectOfType<LevelManager>();
         if (player != null)
             playerCollider = player.GetComponent<Collider2D>();
+
+        player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        
+    }
+    private void Start()
+    {
+  
+        IndicateMask(startingMask);
+            SwapMasks();
+        player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+
     }
     private void Update()
     {
@@ -74,7 +75,8 @@ public class MasksManager : MonoBehaviour
         IndicatedMask.SetActive(true);
         UpdatePreviewColor();
         IndicatedMask.transform.Find("Outline").GetComponent<SpriteRenderer>().enabled = false;
-        currentMask.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.5f);
+        if (currentMask != null)
+            currentMask.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.5f);
 
       //  OverlapImg1.sprite = currentMask.GetComponent<SpriteRenderer>().sprite;
       //  OverlapImg2.sprite = IndicatedMask.GetComponent<SpriteRenderer>().sprite;
@@ -91,7 +93,8 @@ public class MasksManager : MonoBehaviour
         if (!CanSwapToMask(IndicatedMask))
             return;
 
-        currentMask.SetActive(false);
+        if (currentMask != null)
+            currentMask.SetActive(false);
         currentMask = IndicatedMask;
         currentMask.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0,1);
         currentMask.SetActive(true);
