@@ -914,6 +914,7 @@ MonoBehaviour:
   maskUIHighlight: {fileID: 1709194551}
   OverlapImg1: {fileID: 2084422192}
   OverlapImg2: {fileID: 148129122}
+  player: {fileID: 1947057079}
 --- !u!224 &786247618
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1971,6 +1972,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1911373364}
   m_CullTransparentMesh: 1
+--- !u!1 &1947057079 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6249522933712266714, guid: c50fe4a0cd5c685459aad5577e545c99, type: 3}
+  m_PrefabInstance: {fileID: 5100224029746615707}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2019758093
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2567,6 +2573,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6249522933712266714, guid: c50fe4a0cd5c685459aad5577e545c99, type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6249522933712266714, guid: c50fe4a0cd5c685459aad5577e545c99, type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
